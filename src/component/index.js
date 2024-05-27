@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Form, Row, Col, Button, Container, Dropdown, DropdownButton} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import imagePath from '../assets/V.jpg';
 
 function MainPage () {
     const [email, setEmail] = useState('test_email')
@@ -14,8 +15,8 @@ function MainPage () {
         <div style={{marginTop:0}}>
             <Form>
                 <section id="section">
-                    <Container>
-                        <Row style={{height: "50px", backgroundColor: 'grey'}}> {/* Linea de incio de sesión y registro */}
+                    <Container fluid className="mt-4">
+                        <Row style={{height: "50px", backgroundColor: 'grey'}}> {/* Incio de sesión y registro */}
                             <Col className="text-end">
                                 <Button 
                                     type='button'
@@ -35,9 +36,9 @@ function MainPage () {
                                 </Button>
                             </Col>
                         </Row>
-                        <div style={{maxWidth:'60%'}}> 
+                        <div> 
                             <Row style={{marginTop:50, textAlign:'left'}}>
-                                <Col> {/* Busqueda para establecer ubicación*/}
+                                <Col md={7} style={{ marginLeft: '30px' }}> {/* Busqueda para establecer ubicación*/}
                                     <Form.Group>
                                         <label>Establecer Ubicación:</label>
                                         <br />
@@ -45,12 +46,15 @@ function MainPage () {
                                     </Form.Group>
                                 </Col>
                             </Row>
-                            <Row style={{marginTop:30, textAlign:'left'}}>
-                                <Col> {/* Lista scroll*/}
+                        </div>
+                    </Container>
+                    <Container fluid className="mt-4">
+                        <Row style={{marginTop:30, textAlign:'left'}}>
+                            <Col md={7} style={{ marginLeft: '30px' }}> {/* Lista scroll*/}
                                 <label>Seleccionar ubicación:</label>
                                 <Form.Group
                                     className="list-group"
-                                    style={{ maxHeight: '200px', overflowY: 'scroll' }} 
+                                    style={{ maxHeight: '300px', overflowY: 'scroll' }} 
                                 >
                                     {items.map((item, index) => (
                                     <a key={index} className="list-group-item list-group-item-action">
@@ -58,10 +62,12 @@ function MainPage () {
                                     </a>
                                     ))}
                                 </Form.Group>
-                                </Col>
-                            </Row>
-                        </div>
-                    </Container>
+                            </Col>
+                            <Col md={4} >
+                                <img src={imagePath} class="img-fluid" alt="Responsive image"></img>
+                            </Col>
+                        </Row>
+                        </Container>
                 </section>
             </Form>
         </div>
