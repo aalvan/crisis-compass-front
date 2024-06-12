@@ -14,7 +14,7 @@ function MainPage () {
     };
 
     const LoginClick = () => {
-        navigate('/'); // Assuming you have a login route
+        navigate('/login'); // Assuming you have a login route
     };
     return (
         <div style={{marginTop:0}}>
