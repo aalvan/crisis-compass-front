@@ -10,9 +10,8 @@ function App() {
   return (
       <BrowserRouter>
           <Routes>
-              <Route path="/" element={<HomePage/>}>
-                  <Route path="/register-form" element={<RegisterForm />} />
-              </Route>
+              <Route path="/" element={<HomePage/>} />
+              <Route path="/register-form" element={<RegisterForm />} />
               <Route path="/volunteers" element={<Volunteer />} />
           </Routes>
       </BrowserRouter>

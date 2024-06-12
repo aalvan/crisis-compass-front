@@ -1,16 +1,21 @@
 import { useState } from 'react'
-import { Form, Row, Col, Button, Container, Dropdown, DropdownButton} from 'react-bootstrap'
+import { Form, Row, Col, Button, Container} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import imagePath from '../assets/V.jpg';
-
+import {useNavigate} from "react-router-dom";
 function MainPage () {
     const [email, setEmail] = useState('test_email')
     const [password, setPassword] = useState('test_password')
     const items = Array.from({ length: 20 }, (_, index) => `Elemento ${index + 1}`);
-    const showMessage = () => {
-        alert(`El email ingresado es ${email} y el password es ${password}`)
-    }
+    const navigate = useNavigate();
 
+    const RegisterClick = () => {
+        navigate('/register-form');
+    };
+
+    const LoginClick = () => {
+        navigate('/'); // Assuming you have a login route
+    };
     return (
         <div style={{marginTop:0}}>
             <Form>
@@ -18,18 +23,18 @@ function MainPage () {
                     <Container fluid className="mt-4">
                         <Row style={{height: "50px", backgroundColor: 'grey'}}> {/* Incio de sesión y registro */}
                             <Col className="text-end">
-                                <Button 
+                                <Button
                                     type='button'
                                     size='lg'
-                                    onClick={showMessage}
-                                    style={{backgroundColor:"grey", textTransform:"uppercase", border: "none" }}
+                                    onClick={LoginClick}
+                                    style={{backgroundColor: "grey", textTransform: "uppercase", border: "none"}}
                                 >
                                     <label>Iniciar Sesión</label>
                                 </Button>
-                                <Button 
+                                <Button
                                     type='button'
                                     size='lg'
-                                    onClick={showMessage}
+                                    onClick={RegisterClick}
                                     style={{backgroundColor:"grey", textTransform:"uppercase", border: "none" }}
                                 >
                                     <label>Registrarse</label>
