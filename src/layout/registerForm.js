@@ -2,7 +2,7 @@ import {Col, Container, Form, FormCheck, FormSelect, Row} from "react-bootstrap"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import FormCheckInput from "react-bootstrap/FormCheckInput";
 import FormCheckLabel from "react-bootstrap/FormCheckLabel";
-function register_form () {
+function RegisterForm () {
     return (
         <div>
             <header>
@@ -153,4 +153,4 @@ function register_form () {
     )
 }
 
-export default register_form
+export default RegisterForm
