@@ -1,25 +1,53 @@
 import './component.css';
+import { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import imagePath from '../assets/logout.png';
+import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
+import Button from 'react-bootstrap/Button';
+import imagePath from '../assets/compass.png';
+import {useNavigate} from "react-router-dom";
 
-function header(){
+
+function Header(){
+    const navigate = useNavigate();
+
+    const HomeClick = () => {
+        navigate('/');
+    };
+
+    const RegisterClick = () => {
+        navigate('/register-form');
+    };
+
+    const LoginClick = () => {
+        navigate('/login'); // Assuming you have a login route
+    };
+
     return(
         <div className="Header"> 
-            <nav class="navbar">
-            <div class="container-fluid">
-                <a class="navbar-brand" href='./src/component/index.js' >Crisis Compass</a>
-                <div class="row justify-content-end">
-                    <div class="col">
-                    <button type="button" class="btn">Usuario</button>
-                    </div>
-                    <div class="col">
-                    <button class="btn btn-dark" type="submit"><img src={imagePath} class="card-img-top" alt="logout"/></button>
-                    </div>
-                </div>
-            </div>
-            </nav>
+            <Navbar className="Header">
+                <Container>
+                    <Navbar.Brand onClick={HomeClick} className="justify-content-start">
+                        <img
+                        src={imagePath}
+                        width="30"
+                        height="30"
+                        className="d-inline-block align-top"
+                        alt="Crisis Compass logo"
+                        />{' '}
+                        Crisis Compass
+                    </Navbar.Brand>
+                    <Navbar.Toggle />
+                    <Navbar.Collapse className="justify-content-end">
+                        <Button variant="dark" onClick={LoginClick}>Iniciar Sesión</Button>&nbsp;
+                        <Button variant="outline-dark" onClick={RegisterClick}>Registrarse</Button>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
+
         </div>
     )
 }
 
-export default header
+export default Header
+

@@ -1,4 +1,4 @@
-import {Col, Container, Form, Button, FormSelect, Row} from "react-bootstrap";
+import {Col, Form, Button, Row, Card} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import FormCheckInput from "react-bootstrap/FormCheckInput";
 import FormCheckLabel from "react-bootstrap/FormCheckLabel";
@@ -17,74 +17,55 @@ function Login () {
 
     return (
         <div>
-            <header>
             <Header/>
-            </header>
             <body>
-            <Form>
-                <section id="section">
-                    <Container>
-                    <br/>
-                    <Row>
-                        <Col></Col>
-                        <Col>
-                            <Form.Group>
-                                <label>Correo:</label>
-                                <br/>
-                                <Form.Control id="email" type="email" placeholder="nombre@dominio.com"/>
+            <br/>
+            <Row className="justify-content-md-center">
+                <Col md="auto">
+                    <Card style={{ width: '25rem' }}>
+                        <Card.Header className="text-center">Iniciar Sesión</Card.Header>
+                        <Card.Body>
+                            <Form>
+                                <Form.Group>
+                                    <label>Correo:</label>
+                                    <br/>
+                                    <Form.Control id="email" type="email" placeholder="nombre@dominio.com"/>
                                 </Form.Group>
-                            </Col>
-                            <Col></Col>
-                        </Row>
-                    <br/>
-                    <Row>
-                    <Col></Col>
-                        <Col>
-                            <Form.Group>
-                                <label>Contraseña:</label>
                                 <br/>
+                                <Form.Group>
+                                    <label>Contraseña:</label>
+                                    <br/>
+                                    <Form.Control id="password" type="password"/>
                                 </Form.Group>
-                            <Form.Control id="password" type="password"/>
-                        </Col>
-                        <Col></Col>
-                    </Row>
-                    <br/>
-                    <Row>
-                    <Col></Col>
-                    <Col>
-                    <div class="d-flex justify-content-center">
-                    <Button
-                            type='button'
-                            size='md'
-                            onClick={volunteersClick}
-                            style={{backgroundColor: "grey", textTransform: "uppercase", border: "none",}}
-                            >
-                            <label>Iniciar Sesión</label>
-                            </Button>
-                    </div>
-                    </Col>
-                            <Col></Col>
-                    </Row>
-                    <br/>
-                    <Row>
-                    <Col></Col>
-                    <Col>
-                    <div class="d-flex justify-content-center">
-                    <Button
-                            type='button'
-                            size='sm'
-                            onClick={RegisterClick}
-                            style={{color: "black", backgroundColor: "white", textTransform: "uppercase", border: "none"}}
-                            >
-                            <label>¿No tienes cuenta? Registrate</label>
-                            </Button>
-                            </div>
-                    </Col>
-                            <Col></Col>
-                    </Row>
-                    </Container>
-                </section>
-            </Form>
+                                <br/>
+                            </Form>
+                            <Row className="justify-content-center">
+                                <Col md="auto">
+                                    <Button 
+                                        variant="dark" 
+                                        size="md" 
+                                        onClick={volunteersClick} 
+                                        style={{backgroundColor: "#BF5050", }}
+                                        >Iniciar Sesión
+                                    </Button>
+                                </Col>
+                            </Row>
+                            <Row className="justify-content-center">
+                                <Col md="auto">
+                                    <Button
+                                        type='button'
+                                        size='sm'
+                                        onClick={RegisterClick}
+                                        style={{color: "black", backgroundColor: "white", border: "none"}}
+                                        >
+                                        <label>¿No tienes cuenta? Registrate</label>
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
             </body>
         </div>
     )

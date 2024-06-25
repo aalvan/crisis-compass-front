@@ -8,6 +8,7 @@ function presentationCard(){
     return(
         <div className='Card'>
             <div class="container text-center ">
+                <br/>
                 <div class="row">
                     <div class="col">
                         <div class="card" >
@@ -24,24 +25,25 @@ function presentationCard(){
                             <div class="row"><h8 class="text-start">Correo electrónico</h8></div>
                                 <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="usuario@gmail.com" aria-label="usuario@gmail.com" aria-describedby="button-addon2"/>
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><img src={imagePath3} alt="edit"/></button>
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><img src={imagePath3} width="15" height="15" alt="edit"/></button>
                                 </div>
                             <div class="row"><h8 class="text-start">Número de telefono</h8></div>
                                 <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="912345678" aria-label="912345678" aria-describedby="button-addon2"/>
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><img src={imagePath3} alt="edit"/></button>
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><img src={imagePath3} width="15" height="15" alt="edit"/></button>
                                 </div>
                             <div class="row"><h8 class="text-start">Dirección</h8></div>
                                 <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="Av España 1450" aria-label="Av España 1450" aria-describedby="button-addon2"/>
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><img src={imagePath3} alt="edit"/></button>
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><img src={imagePath3} width="15" height="15" alt="edit"/></button>
                                 </div>
                         </div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="card text-bg-dark">
-                        <img src={imagePath} class="card-img" alt="location"/>
+                        <img 
+                            src={imagePath} class="card-img" alt="location"/>
                         <div class="card-img-overlay">
                             <h5 class="card-title">Dirección Asignada</h5>
                             <p class="card-text">Dirección</p>
