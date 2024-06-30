@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {Col, Container, Form, Row, Modal, Button} from "react-bootstrap";
 import "react-datepicker/dist/react-datepicker.module.css";
-import DatePicker  from 'react-datepicker';
+import DatePicker  from 'react-datepicker'; //npm install react-datepicker --save
 
 
 function Register({show, handleClose}) {
@@ -17,7 +17,7 @@ function Register({show, handleClose}) {
     const navigate = useNavigate();
     const volunteersClick = () => {
       navigate('/volunteers');
-  };
+    };
 
     return (
       <>

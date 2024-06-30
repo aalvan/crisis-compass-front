@@ -9,6 +9,11 @@ function Login({show, handleClose, onSubmit}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const hideGroup = document.getElementById('login');
+    const init = () =>{
+
+    }
+
     const [showRegister, setShowRegister] = useState(false)
     const handleCloseRegister = () => { setShowRegister(false); };
     const handleShowRegister = () => { 
@@ -67,6 +72,7 @@ function Login({show, handleClose, onSubmit}) {
                 <Row className="justify-content-center">
                         <Col md="auto">
                             <Button 
+                                id='login'
                                 type="submit"
                                 variant="dark"
                                 name="init" 

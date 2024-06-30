@@ -9,10 +9,10 @@ import Register from './modalRegister';
 
 
 function Header(){
+
     const [showLogin, setShowLogin] = useState(false)
     const handleCloseLogin = () => { setShowLogin(false); };
     const handleShowLogin = () => { setShowLogin(true); };
-
     const [showRegister, setShowRegister] = useState(false)
     const handleCloseRegister = () => { setShowRegister(false); };
     const handleShowRegister = () => { setShowRegister(true); };
