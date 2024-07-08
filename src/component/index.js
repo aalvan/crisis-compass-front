@@ -1,21 +1,41 @@
-import { useState } from 'react'
+import {useEffect, useState} from 'react'
 import { Form, Row, Col, Container, ListGroup} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import imagePath from '../assets/V.jpg';
 import Map from './map';
+import axios from "axios";
 
 function MainPage () {
-    const [location, setLocation] = useState('')
     //const items = Array.from({ length: 20 }, (_, index) => `Elemento ${index + 1}`);
-    const items = [
-        {id: 1, title: 'Liceo Guillermo Gronemeyer', lat: -33.04946316578592, lng: -71.43684884746624, content: 'Centro de Acopio'},
-        {id: 2, title: 'Colegio Fernando Durán', lat: -33.0461333581351, lng: -71.4505121510701, content: 'Centro de Acopio'},
-        {id: 3, title: 'Liceo Comercial Alejandro Lubet', lat: -33.045238526920876, lng: -71.43947051863047, content: 'Centro de Acopio'}
-      ];
+    //const items = [
+    //    {id: 1, title: 'Liceo Guillermo Gronemeyer', lat: -33.04946316578592, lng: -71.43684884746624, content: 'Centro de Acopio'},
+    //    {id: 2, title: 'Colegio Fernando Durán', lat: -33.0461333581351, lng: -71.4505121510701, content: 'Centro de Acopio'},
+    //    {id: 3, title: 'Liceo Comercial Alejandro Lubet', lat: -33.045238526920876, lng: -71.43947051863047, content: 'Centro de Acopio'}
+    //  ];
+    const [location, setLocation] = useState('');
+    const [items, setItems] = useState([]);
+    const [lat, setLat] = useState(0);
+    const [lng, setLng] = useState(0);
     
     let lati, longi;
-    const [lat, setLat] = useState(0)
-    const [lng, setLng] = useState(0)
+    useEffect(() => {
+        // Fetch locations from the API
+        axios.get('http://localhost:3001/api/locations')
+            .then(response => {
+                // Map the response data to match the required format
+                const locations = response.data.map(loc => ({
+                    id: loc.id,
+                    title: loc.name,
+                    content: `${loc.address}, ${loc.city}, ${loc.region}`,
+                    lat: loc.lat, // Assuming API provides lat
+                    lng: loc.lng  // Assuming API provides lng
+                }));
+                setItems(locations);
+            })
+            .catch(error => {
+                console.error("There was an error fetching the locations!", error);
+            });
+    }, []);
     
     const setPosition = (latitude, longitude) => {
         setLat(latitude);
