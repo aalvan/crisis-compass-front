@@ -27,8 +27,8 @@ function MainPage () {
                     id: loc.id,
                     title: loc.name,
                     content: `${loc.address}, ${loc.city}, ${loc.region}`,
-                    lat: loc.lat, // Assuming API provides lat
-                    lng: loc.lng  // Assuming API provides lng
+                    lat: loc.lat,
+                    lng: loc.lng
                 }));
                 setItems(locations);
             })
