@@ -3,49 +3,46 @@ import GoogleMapReact from 'google-map-react';
 import './component.css';
 
 function Map ({title, lat, lng}) {
-    const [latitude, setLatitude] = useState(-33.04523588697034)
-    const [longitude, setLongitude] = useState(-71.44504231878136)
+  const [latitude, setLatitude] = useState(lat);
+  const [longitude, setLongitude] = useState(lng);
 
-    //if (lat !== 0 && lng !== 0){
-    //  setLatitude(lat);
-    //  setLongitude(lng);
-    //}
+  // Actualiza el estado cuando las props cambian
+  useEffect(() => {
+      setLatitude(lat);
+      setLongitude(lng);
+  }, [lat, lng]);
 
-    const defaultProps = {
-        center: {
-          lat: lat,
-          lng: lng
-        },
-        zoom: 15
-      };
+  const defaultProps = {
+      center: {
+          lat: latitude,
+          lng: longitude,
+      },
+      zoom: 15,
+  };
 
+  const Marker = ({ text }) => <div className='marker'>{text}</div>;
 
+  const handleApiLoaded = (map, maps) => {
+      // use map and maps objects
+  };
 
-      const Marker = ({text}) => <div className='marker'>{text}</div>;
-
-      const handleApiLoaded = (map, maps) => {
-        // use map and maps objects
-      };
-
-
-      return (
-        // Important! Always set the container height explicitly
-        <div style={{ height: '50vh', width: '100%' }}>
+  return (
+      <div style={{ height: '50vh', width: '100%' }}>
           <GoogleMapReact
-            bootstrapURLKeys={{ key: "AIzaSyA9RtkiTBGzvHcsY1sihEjVJue941LG59s" }}
-            defaultCenter={defaultProps.center}
-            defaultZoom={defaultProps.zoom}
-            yesIWantToUseGoogleMapApiInternals
-            onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
+              bootstrapURLKeys={{ key: "AIzaSyA9RtkiTBGzvHcsY1sihEjVJue941LG59s" }}
+              center={defaultProps.center} // Actualiza el centro con los nuevos valores de latitud y longitud
+              defaultZoom={defaultProps.zoom}
+              yesIWantToUseGoogleMapApiInternals
+              onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
           >
-        <Marker
-          lat={lat}
-          lng={lng}
-          text={title}
-        />
+              <Marker
+                  lat={latitude}
+                  lng={longitude}
+                  text={title}
+              />
           </GoogleMapReact>
-        </div>
-      );
+      </div>
+  );
 }
 
 export default Map
