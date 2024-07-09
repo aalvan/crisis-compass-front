@@ -6,7 +6,7 @@ function Volunteer(props){
         <div className="VolunteerPage">
         <Header/>
         <body className="App-body">
-        <PresentationCard/>
+        <PresentationCard id="1"/>
         </body>
       </div>
         )
