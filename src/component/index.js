@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import imagePath from '../assets/V.jpg';
 import Map from './map';
 import axios from "axios";
+import Stock from './modalStock';
 
 function MainPage () {
     //const items = Array.from({ length: 20 }, (_, index) => `Elemento ${index + 1}`);
@@ -16,8 +17,20 @@ function MainPage () {
     const [items, setItems] = useState([]);
     const [lat, setLat] = useState(0);
     const [lng, setLng] = useState(0);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedId, setSelectedId] = useState(null);
     
-    let lati, longi;
+
+    const handleShow = (id) => {
+        setSelectedId(id);
+        setShowModal(true);
+      };
+    
+      const handleClose = () => {
+        setShowModal(false);
+        setSelectedId(null);
+      };
+    
     useEffect(() => {
         // Fetch locations from the API
         axios.get('http://localhost:3001/api/locations')
@@ -37,9 +50,10 @@ function MainPage () {
             });
     }, []);
     
-    const setPosition = (latitude, longitude) => {
-        setLat(latitude);
-        setLng(longitude);
+    const setPosition = (id, latitude, longitude) => {
+        handleShow(id)
+        setLat(latitude)
+        setLng(longitude)
         //alert(`Latitud ${lat} y longitud ${lng}`);
       };
 
@@ -56,17 +70,23 @@ function MainPage () {
                                 </Form.Group>
                                 <br/>
                                 <label>Seleccionar ubicación:</label>
-                                <ListGroup style={{ maxHeight: '300px', overflowY: 'scroll' } } >
-                                    {items.map((item) => (
-                                    <a key={item.id}>
-                                        <ListGroup.Item action variant='light' onClick={setPosition} as="li" className="d-flex justify-content-between align-items-start">
-                                            <div className="ms-2 me-auto">
-                                                <div className="fw-bold">{item.title}</div>
-                                                {item.content}
-                                            </div>
-                                        </ListGroup.Item>
-                                    </a>))}
-                                </ListGroup>
+                                <ListGroup style={{ maxHeight: '300px', overflowY: 'scroll' }}>
+                                {items.map((item) => (
+                                <ListGroup.Item 
+                                    key={item.id} 
+                                    action 
+                                    variant='light' 
+                                    onClick={() => setPosition(item.id, item.lat, item.lng)} 
+                                    as="li" 
+                                    className="d-flex justify-content-between align-items-start"
+                                >
+                                    <div className="ms-2 me-auto">
+                                    <div className="fw-bold">{item.title}</div>
+                                    {item.content}
+                                    </div>
+                                </ListGroup.Item>
+                                ))}
+                            </ListGroup>
                             </Col>
                             <Col md={4} >
                                 <Map title={'New position'} lat={-33.04946316578592} lng={-71.43684884746624}/>
@@ -75,7 +95,14 @@ function MainPage () {
                  </Container>
                 </section>
             </Form>
-        </div>
+            {selectedId && (
+        <Stock 
+          id={selectedId} 
+          show={showModal} 
+          handleClose={handleClose} 
+        />
+      )}
+    </div>
     )
 }
 
