@@ -6,9 +6,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import PropTypes from "prop-types";
 
 function Stock({id, show, handleClose, onSubmit}) {
-    const [location, setLocation] = useState('');
-    const [title, setTitle] = useState(''); // Añadir estado para el título
-    const [content, setContent] = useState(''); // Añadir estado para el subtítulo
+    const [location, setLocation] = useState('')
+    const [title, setTitle] = useState('')
+    const [content, setContent] = useState('')
 
     useEffect(() => {
         // Fetch locations from the API
@@ -21,15 +21,15 @@ function Stock({id, show, handleClose, onSubmit}) {
                 lng: response.data.lng
             };
             setLocation(locationData);
-            setTitle(response.data.name); // Actualizar el título con response.data.name
-            setContent(`Located in ${response.data.city}, ${response.data.region}`); // Actualizar el subtítulo
+            setTitle(response.data.name); 
+            setContent(`Located in ${response.data.city}, ${response.data.region}`)
         })
 
             .catch(error => {
                 console.error("There was an error fetching the locations!", error);
             });
     }, []);
-
+    
 
     //solicitar unirse
     const volunteersClick = () => {
@@ -49,7 +49,7 @@ function Stock({id, show, handleClose, onSubmit}) {
           <Modal.Body>
           {location && (
             <div>
-              <h2>{content}</h2>
+              <p>{content}</p>
             </div>
           )}
         </Modal.Body>
