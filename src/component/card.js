@@ -99,8 +99,8 @@ function PresentationCard({ id }) {
                 {user.type && location && (
                     <div className="row mt-4">
                         <div className="col">
-                            <div className="card text-bg-dark">
-                                <div className="card-img-overlay">
+                            <div className="card">
+                                <div className="card-body">
                                     <h5 className="card-title">Dirección Asignada</h5>
                                     <p className="card-text">{location.title}</p>
                                     <p className="card-text">{location.content}</p>
