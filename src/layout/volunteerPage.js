@@ -6,10 +6,10 @@ function Volunteer(props){
         <div className="VolunteerPage">
         <Header/>
         <body className="App-body">
-        <PresentationCard id="1"/>
+        <PresentationCard />
         </body>
       </div>
         )
 }
-
+//id="1"
 export default Volunteer
