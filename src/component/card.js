@@ -1,6 +1,7 @@
 import './component.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import imagePath from '../assets/V.jpg';
+import Map from './map';
 import imagePath2 from '../assets/Person.jpg';
 import imagePath3 from '../assets/edit-text.png';
 import axios from 'axios';
