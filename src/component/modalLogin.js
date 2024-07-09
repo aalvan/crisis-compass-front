@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect} from 'react';
 import {useNavigate} from "react-router-dom";
 import {Col, Form, Button, Row, Modal, Container} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -8,7 +8,7 @@ import axios from "axios";
 
 function Login({show, handleClose, onSubmit}) {
 
-    const [email, setEmail] = useState(0);
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
     const [success, setSuccess] = useState(false);
