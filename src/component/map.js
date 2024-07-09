@@ -27,7 +27,7 @@ function Map ({title, lat, lng, height, width}) {
   };
 
   return (
-      <div style={{ height: '50vh', width: '100%' }}>
+      <div style={{ height: height, width: width}}>
           <GoogleMapReact
               bootstrapURLKeys={{ key: "AIzaSyA9RtkiTBGzvHcsY1sihEjVJue941LG59s" }}
               center={defaultProps.center} // Actualiza el centro con los nuevos valores de latitud y longitud
