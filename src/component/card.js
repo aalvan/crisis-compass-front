@@ -50,67 +50,70 @@ function PresentationCard({ id }) {
       return <div>Loading...</div>;
     }
 
-    return(
+    return (
         <div className='Card'>
-            <div class="container text-center ">
+            <div className="container text-center">
                 <br/>
-                <div class="row">
-                    <div class="col">
-                        <div class="card" >
-                        <img src={imagePath2} class="card-img-top" alt="user"/>
-                        <div class="card-body">
-                            <h7 class="card-title">{user.name}</h7>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card" >
-                        <div class="card-body">
-                            <h5 class="card-title">Información</h5>
-                            <div class="row"><h8 class="text-start">Correo electrónico</h8></div>
-                                <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder={user.mail} aria-label="usuario@gmail.com" aria-describedby="button-addon2"/>
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><img src={imagePath3} width="15" height="15" alt="edit"/></button>
-                                </div>
-                            <div class="row"><h8 class="text-start">Número de telefono</h8></div>
-                                <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder={user.phone} aria-label="912345678" aria-describedby="button-addon2"/>
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><img src={imagePath3} width="15" height="15" alt="edit"/></button>
-                                </div>
-                            <div class="row"><h8 class="text-start">Dirección</h8></div>
-                                <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder={user.address} aria-label="Av España 1450" aria-describedby="button-addon2"/>
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><img src={imagePath3} width="15" height="15" alt="edit"/></button>
-                                </div>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card text-bg-dark">
-                        <img 
-                            src={imagePath} class="card-img" alt="location"/>
-                        <div class="card-img-overlay">
-                            <h5 class="card-title">Dirección Asignada</h5>
-                            <p class="card-text">Dirección</p>
-                        </div>
-                        </div>
-                    </div>
-                    {user.type && location && (
+                <div className="row">
                     <div className="col">
-                    <div className="card text-bg-dark">
-                        <div className="card-img-overlay">
-                        <h5 className="card-title">Dirección Asignada</h5>
-                        <p className="card-text">{location.content}</p>
-                        <p className="card-text">Latitud: {location.lat}</p>
-                        <p className="card-text">Longitud: {location.lng}</p>
+                        <div className="card">
+                            <img src={imagePath2} className="card-img-top" alt="user"/>
+                            <div className="card-body">
+                                <h7 className="card-title">{user.name}</h7>
+                            </div>
                         </div>
                     </div>
+                    <div className="col">
+                        <div className="card">
+                            <div className="card-body">
+                                <h5 className="card-title">Información</h5>
+                                <div className="row"><h8 className="text-start">Correo electrónico</h8></div>
+                                <div className="input-group mb-3">
+                                    <input type="text" className="form-control" placeholder={user.mail} aria-label="usuario@gmail.com" aria-describedby="button-addon2"/>
+                                    <button className="btn btn-outline-secondary" type="button" id="button-addon2"><img src={imagePath3} width="15" height="15" alt="edit"/></button>
+                                </div>
+                                <div className="row"><h8 className="text-start">Número de telefono</h8></div>
+                                <div className="input-group mb-3">
+                                    <input type="text" className="form-control" placeholder={user.phone} aria-label="912345678" aria-describedby="button-addon2"/>
+                                    <button className="btn btn-outline-secondary" type="button" id="button-addon2"><img src={imagePath3} width="15" height="15" alt="edit"/></button>
+                                </div>
+                                <div className="row"><h8 className="text-start">Dirección</h8></div>
+                                <div className="input-group mb-3">
+                                    <input type="text" className="form-control" placeholder={user.address} aria-label="Av España 1450" aria-describedby="button-addon2"/>
+                                    <button className="btn btn-outline-secondary" type="button" id="button-addon2"><img src={imagePath3} width="15" height="15" alt="edit"/></button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    )}
+                    <div className="col">
+                        <div className="card text-bg-dark">
+                            <img src={imagePath} className="card-img" alt="location"/>
+                            <div className="card-img-overlay">
+                                <h5 className="card-title">Dirección Asignada</h5>
+                                <p className="card-text">Dirección</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                </div>
+                
+                {user.type && location && (
+                    <div className="row mt-4">
+                        <div className="col">
+                            <div className="card text-bg-dark">
+                                <div className="card-img-overlay">
+                                    <h5 className="card-title">Dirección Asignada</h5>
+                                    <p className="card-text">{location.title}</p>
+                                    <p className="card-text">{location.content}</p>
+                                    <p className="card-text">Latitud: {location.lat}</p>
+                                    <p className="card-text">Longitud: {location.lng}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
     )
 }
 
-export default PresentationCard
+export default PresentationCard;
