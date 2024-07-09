@@ -7,20 +7,24 @@ import PropTypes from "prop-types";
 
 function Stock({id, show, handleClose, onSubmit}) {
     const [location, setLocation] = useState('');
+    const [title, setTitle] = useState(''); // Añadir estado para el título
+    const [content, setContent] = useState(''); // Añadir estado para el subtítulo
 
     useEffect(() => {
         // Fetch locations from the API
-        axios.get('http://localhost:3001/api/locations/${id}')
-            .then(response => {
-                // Map the response data to match the required format
-                const location = response.data.map(loc => ({
-                    id: loc.id,
-                    title: loc.name,
-                    content: `${loc.address}, ${loc.city}, ${loc.region}`,
-                    lat: loc.lat,
-                    lng: loc.lng
-                }));
-            })
+        axios.get(`http://localhost:3001/api/location/${id}`).then(response => {
+            const locationData = {
+                id: response.data.id,
+                title: response.data.name,
+                content: `${response.data.address}, ${response.data.city}, ${response.data.region}`,
+                lat: response.data.lat,
+                lng: response.data.lng
+            };
+            setLocation(locationData);
+            setTitle(response.data.name); // Actualizar el título con response.data.name
+            setContent(`Located in ${response.data.city}, ${response.data.region}`); // Actualizar el subtítulo
+        })
+
             .catch(error => {
                 console.error("There was an error fetching the locations!", error);
             });
@@ -40,12 +44,12 @@ function Stock({id, show, handleClose, onSubmit}) {
               aria-labelledby="contained-modal-title-vcenter"
               centered >
           <Modal.Header closeButton>
-            <Modal.Title className="text-center">{location.title}</Modal.Title>
+            <Modal.Title className="text-center">{title}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
           {location && (
             <div>
-              <h2>{location.content}</h2>
+              <h2>{content}</h2>
             </div>
           )}
         </Modal.Body>
