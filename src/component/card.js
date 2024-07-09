@@ -36,8 +36,8 @@ function PresentationCard({ id }) {
             id: response.data.id,
             title: response.data.name,
             content: `${response.data.address}, ${response.data.city}, ${response.data.region}`,
-            lat: response.data.lat,
-            lng: response.data.lng
+            latitude: response.data.latitude,
+            longitude: response.data.longitude
           };
           setLocation(locationData);
         }).catch(error => {
@@ -86,13 +86,7 @@ function PresentationCard({ id }) {
                         </div>
                     </div>
                     <div className="col">
-                        <div className="card text-bg-dark">
-                            <img src={imagePath} className="card-img" alt="location"/>
-                            <div className="card-img-overlay">
-                                <h5 className="card-title">Dirección Asignada</h5>
-                                <p className="card-text">Dirección</p>
-                            </div>
-                        </div>
+                        <Map title={'Locación'} lat={location.latitude} lng={location.longitude}/>
                     </div>
                 </div>
                 
@@ -104,8 +98,8 @@ function PresentationCard({ id }) {
                                     <h5 className="card-title">Dirección Asignada</h5>
                                     <p className="card-text">{location.title}</p>
                                     <p className="card-text">{location.content}</p>
-                                    <p className="card-text">Latitud: {location.lat}</p>
-                                    <p className="card-text">Longitud: {location.lng}</p>
+                                    <p className="card-text">Latitud: {location.latitude}</p>
+                                    <p className="card-text">Longitud: {location.longitude}</p>
                                 </div>
                             </div>
                         </div>
