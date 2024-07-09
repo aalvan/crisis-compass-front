@@ -24,6 +24,7 @@ function Header(){
 
     const navigate = useNavigate();
     const HomeClick = () => {
+        setUser(false)
         navigate('/');
     };
 
