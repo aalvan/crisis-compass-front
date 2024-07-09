@@ -36,7 +36,7 @@ function Stock({id, show, handleClose, onSubmit}) {
 
     //solicitar unirse
     const helpClick = ({ iduser, idlocation }) => {
-      if(user){
+      if(user !== null){
         alert(`Solicitud enviada`);
 
         axios.put(`http://localhost:3001/api/user/${iduser}`, { assigned_location_id: idlocation })
@@ -67,11 +67,11 @@ function Stock({id, show, handleClose, onSubmit}) {
               <p>{content}</p>
               {location.locationType ? (
                 <>
-
+                <p>shelter</p>
                 </>
                 ) : (
                 <>
-                
+                <p>colecction center</p>
                 </>
               )}
             </div>

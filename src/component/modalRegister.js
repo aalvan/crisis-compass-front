@@ -42,6 +42,7 @@ function Register({show, handleClose}) {
         try {
             const response = await axios.post('http://localhost:3001/api/user', user);
             console.log('User created:', response.data);
+            handleClose()
         } catch (error) {
             console.error('Error creating user:', error);
         }

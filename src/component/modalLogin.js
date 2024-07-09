@@ -49,8 +49,9 @@ function Login({show, handleClose, onSubmit}) {
             setErrorMsg('El inicio de sesión ha fallado')
 
         }
-      if(user){
-        navigate('/volunteers');
+      if(response.data.user){
+        handleClose()
+        navigate('/volunteers')
       } else {
         alert(`Correo o contraseña no válido`);
       }
