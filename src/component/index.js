@@ -89,7 +89,7 @@ function MainPage () {
                             </ListGroup>
                             </Col>
                             <Col md={4} >
-                                <Map title={'New position'} lat={lat} lng={lng}/>
+                                <Map title={'New position'} lat={lat} lng={lng} height={'50vh'} width={'100%'}/>
                             </Col>
                         </Row>
                  </Container>

@@ -87,7 +87,7 @@ function PresentationCard({ id }) {
                         </div>
                     </div>
                     <div className="col">
-                        <Map title={'Locación'} lat={location.latitude} lng={location.longitude}/>
+                        <Map title={'Locación'} lat={location.latitude} lng={location.longitude} height={'100%'} width={'100%'}/>
                     </div>
                 </div>
                 

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import GoogleMapReact from 'google-map-react';
 import './component.css';
 
-function Map ({title, lat, lng}) {
+function Map ({title, lat, lng, height, width}) {
   const [latitude, setLatitude] = useState(lat);
   const [longitude, setLongitude] = useState(lng);
 
