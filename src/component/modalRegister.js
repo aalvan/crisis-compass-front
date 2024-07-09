@@ -10,6 +10,7 @@ import axios from "axios"; //npm install react-datepicker --save
 function Register({show, handleClose}) {
     const [name, setName] = useState('');
     const [lastname, setLastname] = useState('');
+    const completeName = name + ' ' + lastname;
     const [address, setAddress] = useState('');
     const [number, setNumber] = useState('');
     const [startDate, setStartDate] = useState(new Date("2000", "0", "1"));
@@ -27,7 +28,7 @@ function Register({show, handleClose}) {
 
     const handleCreateAccount = async () => {
         const user = {
-            name,
+            completeName,
             address,
             phone: number,
             birthday: startDate,
