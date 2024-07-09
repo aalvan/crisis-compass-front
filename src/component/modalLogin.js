@@ -1,17 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {useNavigate} from "react-router-dom";
 import {Col, Form, Button, Row, Modal, Container} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Register from './modalRegister';
 import PropTypes from "prop-types";
+import axios from "axios";
 
 function Login({show, handleClose, onSubmit}) {
-    const [email, setEmail] = useState('');
+
+    const [email, setEmail] = useState(0);
     const [password, setPassword] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');
+    const [success, setSuccess] = useState(false);
+
+    useEffect(() => {
+      axios.post('http://localhost:3001/api/user', {
+        params: {
+          email: email,
+          password: password
+        }})
+          .then(response => {
+              setSuccess(true)
+          })
+          .catch(error => {
+              setErrorMsg('El inicio de sesión ha fallado')
+          });
+  }, []);
 
     const hideGroup = document.getElementById('login');
     const init = () =>{
-
     }
 
     const [showRegister, setShowRegister] = useState(false)
@@ -21,9 +38,11 @@ function Login({show, handleClose, onSubmit}) {
       setShowRegister(true);
      };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
       event.preventDefault();
-      onSubmit({ email, password });
+      setEmail('');
+      setPassword('');
+      setSuccess(true);
     };
 
     const navigate = useNavigate();
@@ -48,9 +67,12 @@ function Login({show, handleClose, onSubmit}) {
                         <Form.Control 
                             id="email" 
                             name="email"
-                            type="email" 
+                            type="email"
+                            autoComplete='off'
                             placeholder="nombre@dominio.com" 
                             onChange={(event) => setEmail(event.target.value)} 
+                            value={email}
+                            required
                             data-testid="loginForm-email" />
                     </Form.Group>
                     <br/>
@@ -61,7 +83,9 @@ function Login({show, handleClose, onSubmit}) {
                             id="password" 
                             name="password"
                             type="password"
-                            onChange={(event) => setPassword(event.target.value)} 
+                            onChange={(event) => setPassword(event.target.value)}
+                            value={password}
+                            required
                             data-testid="loginForm-password"/>
                     </Form.Group>
                     <br/>
@@ -107,4 +131,5 @@ function Login({show, handleClose, onSubmit}) {
     onSubmit: PropTypes.func.isRequired
   };
   
+  //<p className={errorMsg ? "errorMsg" : "offscreen"} aria-live='assertive'>{errorMsg}</p>
   export default Login;
