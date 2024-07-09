@@ -14,17 +14,10 @@ function Login({show, handleClose, onSubmit}) {
     const [errorMsg, setErrorMsg] = useState('');
     const [success, setSuccess] = useState(false);
     const { user, setUser } = useContext(UserContext);
-
-    useEffect(() => {
-      axios.post('http://localhost:3001/api/users/check', { email, password })
-          .then(response => {
-              setSuccess(true)
-              setUser(response.data.user);
-          })
-          .catch(error => {
-              setErrorMsg('El inicio de sesión ha fallado')
-          });
-  }, []);
+    const userTest = {
+        email: email,
+        password: password,
+    };
 
     const hideGroup = document.getElementById('login');
     const init = () =>{
@@ -45,7 +38,17 @@ function Login({show, handleClose, onSubmit}) {
     };
 
     const navigate = useNavigate();
-    const volunteersClick = () => {
+    const volunteersClick = async () => {
+        try{
+            const response = await axios.post('http://localhost:3001/api/user/check',userTest)
+            setSuccess(true)
+            console.log(response)
+            setUser(response.data.user);
+        }
+        catch{
+            setErrorMsg('El inicio de sesión ha fallado')
+
+        }
       if(user){
         navigate('/volunteers');
       } else {
