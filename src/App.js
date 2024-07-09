@@ -1,22 +1,22 @@
 import './App.css';
-
-import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./layout/homePage";
 import Volunteer from "./layout/volunteerPage";
+import Header from "./component/header.js"; 
+import { UserProvider } from "./component/UserContext.js"; 
 
 function App() {
-    function handleLogin(a) {
-        console.log("Logged in", a);
-      }
-  return (
-      <BrowserRouter>
-          <Routes>
-              <Route path="/" element={<HomePage/>} />
-              <Route path="/volunteers" element={<Volunteer />} />
-          </Routes>
-      </BrowserRouter>
-  );
+    return (
+        <UserProvider>
+            <BrowserRouter>
+                <Header /> {}
+                <Routes>
+                    <Route path="/" element={<HomePage/>} />
+                    <Route path="/volunteers" element={<Volunteer />} />
+                </Routes>
+            </BrowserRouter>
+        </UserProvider>
+    );
 }
 
 export default App;

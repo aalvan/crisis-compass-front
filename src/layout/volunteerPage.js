@@ -1,15 +1,17 @@
-import Header from '../component/header';
+import React, { useContext } from 'react';
 import PresentationCard from '../component/card';
+import { UserContext } from '../component/UserContext';
 
-function Volunteer(props){
-    return(
+function Volunteer() {
+    const { user } = useContext(UserContext);
+
+    return (
         <div className="VolunteerPage">
-        <Header/>
-        <body className="App-body">
-        <PresentationCard id="1"/>
-        </body>
-      </div>
-        )
+            <div className="App-body">
+                <PresentationCard id={user ? user.id : null} />
+            </div>
+        </div>
+    );
 }
 
-export default Volunteer
+export default Volunteer;

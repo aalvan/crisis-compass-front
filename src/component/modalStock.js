@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext} from 'react';
 import {useNavigate} from "react-router-dom";
 import axios from 'axios';
 import {Col, Form, Button, Row, Modal, Container} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import PropTypes from "prop-types";
+import { UserContext } from './UserContext';
 
 function Stock({id, show, handleClose, onSubmit}) {
+    const { user } = useContext(UserContext);
     const [location, setLocation] = useState('')
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
@@ -17,8 +19,9 @@ function Stock({id, show, handleClose, onSubmit}) {
                 id: response.data.id,
                 title: response.data.name,
                 content: `${response.data.address}, ${response.data.city}, ${response.data.region}`,
-                lat: response.data.lat,
-                lng: response.data.lng
+                locationType: response.data.locationType,
+                lat: response.data.latitude,
+                lng: response.data.longitude
             };
             setLocation(locationData);
             setTitle(response.data.name); 
@@ -32,10 +35,22 @@ function Stock({id, show, handleClose, onSubmit}) {
     
 
     //solicitar unirse
-    const volunteersClick = () => {
-      alert(`solicitud enviada`)
-      //enviar correo
-    };
+    const helpClick = ({ iduser, idlocation }) => {
+      if(user){
+        alert(`Solicitud enviada`);
+
+        axios.put(`http://localhost:3001/api/user/${iduser}`, { assigned_location_id: idlocation })
+          .then(response => {
+            console.log('Datos actualizados:', response.data);
+          })
+          .catch(error => {
+            console.error('Hubo un error al actualizar los datos:', error);
+          })
+      }
+      else {
+        alert(`Por favor iniciar sesión primero`);
+      }
+    }
 
     return (
       <>
@@ -50,6 +65,15 @@ function Stock({id, show, handleClose, onSubmit}) {
           {location && (
             <div>
               <p>{content}</p>
+              {location.locationType ? (
+                <>
+
+                </>
+                ) : (
+                <>
+                
+                </>
+              )}
             </div>
           )}
         </Modal.Body>
@@ -63,7 +87,7 @@ function Stock({id, show, handleClose, onSubmit}) {
                                 variant="dark"
                                 name="init" 
                                 size="md" 
-                                onClick={volunteersClick}  
+                                onClick={() => helpClick({iduser: user.id, idlocation: location.id })} 
                                 style={{backgroundColor: "#BF5050", }}
                                 >Ofrecer ayuda
                             </Button>
