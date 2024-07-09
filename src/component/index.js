@@ -15,8 +15,8 @@ function MainPage () {
     //  ];
     const [location, setLocation] = useState('');
     const [items, setItems] = useState([]);
-    const [lat, setLat] = useState(0);
-    const [lng, setLng] = useState(0);
+    const [lat, setLat] = useState(-33.04946316578592);
+    const [lng, setLng] = useState(-71.43684884746624);
     const [showModal, setShowModal] = useState(false);
     const [selectedId, setSelectedId] = useState(null);
     
@@ -40,8 +40,8 @@ function MainPage () {
                     id: loc.id,
                     title: loc.name,
                     content: `${loc.address}, ${loc.city}, ${loc.region}`,
-                    lat: loc.lat,
-                    lng: loc.lng
+                    lat: loc.latitude,
+                    lng: loc.longitude
                 }));
                 setItems(locations);
             })
@@ -76,7 +76,7 @@ function MainPage () {
                                     key={item.id} 
                                     action 
                                     variant='light' 
-                                    onClick={() => setPosition(item.id, item.lat, item.lng)} 
+                                    onClick={() => setPosition(item.id, item.latitude, item.longitude)}
                                     as="li" 
                                     className="d-flex justify-content-between align-items-start"
                                 >
@@ -89,7 +89,7 @@ function MainPage () {
                             </ListGroup>
                             </Col>
                             <Col md={4} >
-                                <Map title={'New position'} lat={-33.04946316578592} lng={-71.43684884746624}/>
+                                <Map title={'New position'} lat={lat} lng={lng}/>
                             </Col>
                         </Row>
                  </Container>
