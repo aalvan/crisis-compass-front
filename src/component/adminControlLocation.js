@@ -6,12 +6,31 @@ import imageCheck from '../assets/check-mark.png';
 import imageError from '../assets/traffic-signal.png';
 import { Col, Container, ListGroup, Button, ButtonGroup } from 'react-bootstrap';
 
-function ControlLocation() {
-    const items = [
-        {id: 1, name: 'Susana Susanita', location_id: "Locacion1", assign: false},
-        {id: 2, name: 'Alan Brito', location_id: "Locacion2", assign: false},
-        {id: 3, name: 'Javier Bustamantes', location_id: "Locacion1", assign: false}
-      ];
+function ControlLocation({id}) {
+    //const items = [
+    //    {id: 1, name: 'Susana Susanita', location_id: "Locacion1", assign: false},
+    //    {id: 2, name: 'Alan Brito', location_id: "Locacion2", assign: false},
+    //    {id: 3, name: 'Javier Bustamantes', location_id: "Locacion1", assign: false}
+    //  ];
+
+    const [users, setUsers] = useState([]);
+
+      useEffect(() => {
+        // Fetch user data from the API
+        axios.get(`http://localhost:3001/api/userslocation/${id}`).then(response => {
+          const userData = {
+            id: response.data.id,
+            name: response.data.name,
+            phone: response.data.phone,
+            mail: response.data.mail
+          };
+          setUsers(userData);
+        }).catch(error => {
+          console.error("There was an error fetching the user data!", error);
+        });
+      }, [id]);
+
+
     return(
         <>
         <div className='ControlLocation'>
@@ -22,17 +41,17 @@ function ControlLocation() {
                         as="li" 
                         className="d-flex justify-content-between">
                         <Col xs={5}>Voluntario</Col>
-                        <Col xs={5}>Inscripción</Col>
+                        <Col xs={5}>Contacto</Col>
                         <Col xs={2}>Asignación</Col>
                     </ListGroup.Item>
-                    {items.map((item) => (
+                    {users.map((item) => (
                     <ListGroup.Item 
                         key={item.id} 
                         variant='light' 
                         as="li" 
                         className="d-flex justify-content-between align-items-start">
                         <Col xs={5}>{item.name}</Col>
-                        <Col xs={5}>{item.location_id}</Col>
+                        <Col xs={5}>{item.phone}</Col>
                         <Col xs={2}>
                             <ButtonGroup aria-label="Basic example">
                                 <Button variant="light">
