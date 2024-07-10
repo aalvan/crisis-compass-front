@@ -3,10 +3,12 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import {Col, Container, Form, Row, Modal, Button} from "react-bootstrap";
 import "react-datepicker/dist/react-datepicker.module.css";
 import DatePicker  from 'react-datepicker';
-import axios from "axios"; //npm install react-datepicker --save
+import axios from "axios"; 
+import { UserContext } from './UserContext';
 
 
 function Register({show, handleClose}) {
+    const { user, setUser } = useContext(UserContext);
     const [name, setName] = useState('');
     const [lastname, setLastname] = useState('');
     const completeName = name + ' ' + lastname;
@@ -23,21 +25,22 @@ function Register({show, handleClose}) {
 
     const handleCreateAccount = async () => {
         const user = {
-            completeName,
-            address,
+            name: completeName,
+            address: address,
             phone: number,
             birthday: startDate,
             genre: gender,
             assigned_location_id: 1,
             user_type: false,
             mail: email,
-            password,
+            password: password
         };
 
         try {
             const response = await axios.post('http://localhost:3001/api/user', user);
             console.log('User created:', response.data);
             handleClose()
+            setUser(response.data.user);
         } catch (error) {
             console.error('Error creating user:', error);
         }
