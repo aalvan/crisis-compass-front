@@ -54,7 +54,6 @@ function ControlLocation() {
                     </ListGroup.Item>
                     ))}
                 </ListGroup>
-
             </Container>
         </div>
         </>
