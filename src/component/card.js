@@ -105,11 +105,11 @@ function PresentationCard({ id }) {
                                     <h5 className="card-title">Dirección Asignada</h5>
                                     <p className="card-text">{location.title}</p>
                                     <p className="card-text">{location.content}</p>
-                                    <ControlLocation style={{marginRight:50}} />
+                                    <ControlLocation id={location.id}/>
                                     {location.locationType ? (
                                       <>
                                       <p>Albergue</p>
-                                      <ControlCapacity/>
+                                      <ControlCapacity idLocation={location.id}/>
                                       </>
                                       ) : (
                                       <>

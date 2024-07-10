@@ -16,15 +16,18 @@ function ControlCapacity({ idLocation }) {
       .then(response => {
         const shelterData = {
           id: response.data.id,
+          name:response.data.name,
           capacity: response.data.capacity,
           maxCapacity: response.data.maxCapacity
         };
+        console.log(shelterData)
         setShelter(shelterData);
       })
       .catch(error => {
         console.error("There was an error fetching the locations!", error);
       });
   }, [idLocation]);
+
 
   const updateCapacity = (value) => {
     let newCapacity = shelter.capacity + value;
@@ -58,7 +61,7 @@ function ControlCapacity({ idLocation }) {
             variant='light'
             as="li"
             className="d-flex justify-content-between align-items-start">
-            <Col className="mt-2 justify-content-center" sm>Nombre</Col>
+            <Col className="mt-2 justify-content-center" sm>{shelter.name}</Col>
             <Col className="mt-2 justify-content-center" sm>{shelter.maxCapacity}</Col>
             <Col className="mt-2 justify-content-center" sm>{shelter.capacity}</Col>
             <Col sm style={{ marginRight: 6 }}>

@@ -19,12 +19,13 @@ function ControlLocation({id}) {
       useEffect(() => {
         // Fetch user data from the API
         axios.get(`http://localhost:3001/api/userslocation/${id}`).then(response => {
-          const userData = {
-            id: response.data.id,
-            name: response.data.name,
-            phone: response.data.phone,
-            mail: response.data.mail
-          };
+
+            const userData = response.data.map(loc => ({
+                id: loc.id,
+                name: loc.name,
+                mail: loc.mail,
+                phone: loc.phone
+            }));
           setUsers(userData);
         }).catch(error => {
           console.error("There was an error fetching the user data!", error);
