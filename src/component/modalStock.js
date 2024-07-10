@@ -4,6 +4,7 @@ import {Col, Button, Row, Modal, Container} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { UserContext } from './UserContext';
 import ShowCapacity from './showCapacity';
+import ControlStock from "./adminControlStock";
 
 function Stock({id, show, handleClose, onSubmit}) {
     const { user } = useContext(UserContext);
@@ -72,6 +73,7 @@ function Stock({id, show, handleClose, onSubmit}) {
                 ) : (
                 <>
                 <p>Centro de acopio</p>
+                    <ControlStock/>
                 </>
               )}
             </div>

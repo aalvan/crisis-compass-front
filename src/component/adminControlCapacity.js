@@ -68,7 +68,7 @@ function ControlCapacity({ idLocation }) {
             <Col sm style={{ marginRight: 6 }}>
               <InputGroup className="mb-1">
                 <Form.Control
-                  placeholder="0"
+                  placeholder={newIn}
                   aria-label="cantidad"
                   aria-describedby="basic-addon2"
                   onChange={(event) => setNewIn(Number(event.target.value))}
@@ -86,7 +86,7 @@ function ControlCapacity({ idLocation }) {
             <Col sm>
               <InputGroup className="mb-1">
                 <Form.Control
-                  placeholder="0"
+                  placeholder={newOut}
                   aria-label="cantidad"
                   aria-describedby="basic-addon2"
                   onChange={(event) => setNewOut(Number(event.target.value))}
