@@ -5,6 +5,7 @@ import { functionTypeAnnotation } from '@babel/types';
 import imageCheck from '../assets/check-mark.png';
 import imageError from '../assets/traffic-signal.png';
 import { Col, Container, ListGroup, Button, ButtonGroup } from 'react-bootstrap';
+import axios from 'axios';
 
 function ControlLocation({id}) {
     //const items = [
