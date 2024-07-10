@@ -6,6 +6,8 @@ import imagePath2 from '../assets/Person.jpg';
 import imagePath3 from '../assets/edit-text.png';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import ControlLocation from '../component/adminControlLocation';
+import ControlStock from '../component/adminControlStock';
 
 function PresentationCard({ id }) {
     const [user, setUser] = useState(null);
