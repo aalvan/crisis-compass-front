@@ -33,8 +33,8 @@ function Register({show, handleClose}) {
             phone: number,
             birthday: startDate,
             genre: gender,
-            assigned_location_id: 0,
-            user_type: 0,
+            assigned_location_id: 1,
+            user_type: false,
             mail: email,
             password,
         };
@@ -42,6 +42,7 @@ function Register({show, handleClose}) {
         try {
             const response = await axios.post('http://localhost:3001/api/user', user);
             console.log('User created:', response.data);
+            handleClose()
         } catch (error) {
             console.error('Error creating user:', error);
         }

@@ -1,10 +1,11 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import {useNavigate} from "react-router-dom";
 import {Col, Form, Button, Row, Modal, Container} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Register from './modalRegister';
 import PropTypes from "prop-types";
 import axios from "axios";
+import { UserContext } from './UserContext';
 
 function Login({show, handleClose, onSubmit}) {
 
@@ -12,20 +13,11 @@ function Login({show, handleClose, onSubmit}) {
     const [password, setPassword] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
     const [success, setSuccess] = useState(false);
-
-    useEffect(() => {
-      axios.post('http://localhost:3001/api/user', {
-        params: {
-          email: email,
-          password: password
-        }})
-          .then(response => {
-              setSuccess(true)
-          })
-          .catch(error => {
-              setErrorMsg('El inicio de sesión ha fallado')
-          });
-  }, []);
+    const { user, setUser } = useContext(UserContext);
+    const userTest = {
+        email: email,
+        password: password,
+    };
 
     const hideGroup = document.getElementById('login');
     const init = () =>{
@@ -46,9 +38,23 @@ function Login({show, handleClose, onSubmit}) {
     };
 
     const navigate = useNavigate();
-    const volunteersClick = () => {
-      navigate('/volunteers');
-    };
+    const volunteersClick = async () => {
+      try {
+          const response = await axios.post('http://localhost:3001/api/user/check', userTest);
+          if (response.data.user) {
+              setSuccess(true);
+              setUser(response.data.user);
+              handleClose();
+              navigate('/volunteers');
+          } else {
+              setErrorMsg('Correo o contraseña no válido');
+              alert('Correo o contraseña no válido');
+          }
+      } catch (error) {
+          setErrorMsg('El inicio de sesión ha fallado');
+          console.error(error);
+      }
+  }
 
     return (
       <>
