@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import './component.css';
+
 
 function Map ({title, lat, lng, height, width}) {
   const [latitude, setLatitude] = useState(lat);
@@ -27,7 +28,7 @@ function Map ({title, lat, lng, height, width}) {
   };
 
   return (
-      <div style={{ height: height, width: width}}>
+      <div style={{ height: height, width: width }}>
           <GoogleMapReact
               bootstrapURLKeys={{ key: "AIzaSyA9RtkiTBGzvHcsY1sihEjVJue941LG59s" }}
               center={defaultProps.center} // Actualiza el centro con los nuevos valores de latitud y longitud
