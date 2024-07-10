@@ -87,7 +87,7 @@ function Stock({id, show, handleClose, onSubmit}) {
                                 variant="dark"
                                 name="init" 
                                 size="md" 
-                                onClick={() => helpClick({iduser: user.id, idlocation: location.id })} 
+                                onClick={() => helpClick({iduser: user?.id, idlocation: location.id })} 
                                 style={{backgroundColor: "#BF5050", }}
                                 >Ofrecer ayuda
                             </Button>

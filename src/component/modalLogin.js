@@ -39,24 +39,22 @@ function Login({show, handleClose, onSubmit}) {
 
     const navigate = useNavigate();
     const volunteersClick = async () => {
-        try{
-            const response = await axios.post('http://localhost:3001/api/user/check',userTest)
-            setSuccess(true)
-            console.log(response)
-            setUser(response.data.user);
-        }
-        catch{
-            setErrorMsg('El inicio de sesión ha fallado')
-
-        }
-      if(response.data.user){
-        handleClose()
-        navigate('/volunteers')
-      } else {
-        alert(`Correo o contraseña no válido`);
+      try {
+          const response = await axios.post('http://localhost:3001/api/user/check', userTest);
+          if (response.data.user) {
+              setSuccess(true);
+              setUser(response.data.user);
+              handleClose();
+              navigate('/volunteers');
+          } else {
+              setErrorMsg('Correo o contraseña no válido');
+              alert('Correo o contraseña no válido');
+          }
+      } catch (error) {
+          setErrorMsg('El inicio de sesión ha fallado');
+          console.error(error);
       }
-
-    };
+  }
 
     return (
       <>
