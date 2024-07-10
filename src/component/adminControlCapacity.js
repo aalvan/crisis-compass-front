@@ -3,24 +3,53 @@ import './component.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import imageCheck from '../assets/check-mark.png';
 import { Col, Container, ListGroup, Button, InputGroup, Form, FloatingLabel } from 'react-bootstrap';
+import axios from "axios";
 
-function ControlCapacity () {
-    const [actualCapacity, setActualCapacity] = useState(250)
+function ControlCapacity ({idLocation}) {
+    const [shelter, setShelter] = useState()
 
     const [newIn, setNewIn] = useState(0)
     const [newOut, setNewOut] = useState(0)
 
+    useEffect(() => {
+        axios.get(`http://localhost:3001/api/shelterslocation/${idLocation}`).then(response => {
+            const shelterData = {
+                id: response.data.id,
+                capacity: response.data.capacity,
+                maxCapacity: response.data.capacity
+            };
+            setShelter(shelterData);
+        })
+
+            .catch(error => {
+                console.error("There was an error fetching the locations!", error);
+            });
+    }, []);
+
     const plus = ({value}) => {
         let result;
-        let quantity;
-        result = quantity + value;
-    }
+        result = shelter.capacity + value;
+        axios.put(`http://localhost:3001/api/shelter/${shelter.id}`, { capacity: result })
+          .then(response => {
+            console.log('Datos actualizados:', response.data);
+          })
+          .catch(error => {
+            console.error('Hubo un error al actualizar los datos:', error);
+          })
+      }
+    
 
     const substract = ({value}) => {
         let result;
-        let quantity;
-        result = quantity - value;
-    }
+        result = shelter.capacity - value;
+        axios.put(`http://localhost:3001/api/shelter/${shelter.id}`, { capacity: result })
+          .then(response => {
+            console.log('Datos actualizados:', response.data);
+          })
+          .catch(error => {
+            console.error('Hubo un error al actualizar los datos:', error);
+          })
+      }
 
     return(
         <>
@@ -42,8 +71,8 @@ function ControlCapacity () {
                         as="li" 
                         className="d-flex justify-content-between align-items-start">
                         <Col className="mt-2 justify-content-center" sm>Nombre</Col>
-                        <Col className="mt-2 justify-content-center" sm>500</Col>
-                        <Col className="mt-2 justify-content-center" sm>{actualCapacity}</Col>
+                        <Col className="mt-2 justify-content-center" sm>{shelter.maxCapacity}</Col>
+                        <Col className="mt-2 justify-content-center" sm>{shelter.capacity}</Col>
                         <Col sm style={{marginRight:6}}>
                             <InputGroup className="mb-1">
                                 <Form.Control
