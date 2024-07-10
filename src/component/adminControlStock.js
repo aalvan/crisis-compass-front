@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './component.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import imageCheck from '../assets/check-mark.png';
-import { Col, Container, ListGroup, Button, InputGroup, Form, FloatingLabel } from 'react-bootstrap';
+import { Col, Container, ListGroup, Button, InputGroup, Form } from 'react-bootstrap';
 
 function ControlStock() {
     const items = [
@@ -21,12 +21,14 @@ function ControlStock() {
         let result;
         let quantity;
         result = quantity + value;
+        setNewIn(0)
     }
 
     const substract = ({value}) => {
         let result;
         let quantity;
         result = quantity - value;
+        setNewOut(0)
     }
 
     const append = ({}) => {

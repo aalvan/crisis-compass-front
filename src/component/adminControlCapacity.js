@@ -20,7 +20,6 @@ function ControlCapacity({ idLocation }) {
           capacity: response.data.capacity,
           maxCapacity: response.data.maxCapacity
         };
-        console.log(shelterData)
         setShelter(shelterData);
       })
       .catch(error => {
@@ -41,6 +40,8 @@ function ControlCapacity({ idLocation }) {
       .catch(error => {
         console.error('Hubo un error al actualizar los datos:', error);
       });
+    setNewIn(0);
+    setNewOut(0);
   }
 
   return (

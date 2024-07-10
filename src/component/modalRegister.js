@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import {useNavigate} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {Col, Container, Form, Row, Modal, Button} from "react-bootstrap";
 import "react-datepicker/dist/react-datepicker.module.css";
@@ -17,10 +16,6 @@ function Register({show, handleClose}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [gender, setGender] = useState('');
-    const [assignedLocationId, setAssignedLocationId] = useState('');
-    const [userType, setUserType] = useState('');
-
-    const navigate = useNavigate();
 
     const handleGenderChange = (e) => {
         setGender(e.target.value);

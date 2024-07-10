@@ -1,7 +1,6 @@
 import {useEffect, useState} from 'react'
 import { Form, Row, Col, Container, ListGroup} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import imagePath from '../assets/V.jpg';
 import Map from './map';
 import axios from "axios";
 import Stock from './modalStock';

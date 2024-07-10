@@ -1,9 +1,7 @@
 import React, { useEffect, useState, useContext} from 'react';
-import {useNavigate} from "react-router-dom";
 import axios from 'axios';
-import {Col, Form, Button, Row, Modal, Container} from "react-bootstrap";
+import {Col, Button, Row, Modal, Container} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css'
-import PropTypes from "prop-types";
 import { UserContext } from './UserContext';
 
 function Stock({id, show, handleClose, onSubmit}) {

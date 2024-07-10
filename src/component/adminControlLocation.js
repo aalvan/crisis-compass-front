@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './component.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { functionTypeAnnotation } from '@babel/types';
 import imageCheck from '../assets/check-mark.png';
 import imageError from '../assets/traffic-signal.png';
 import { Col, Container, ListGroup, Button, ButtonGroup } from 'react-bootstrap';
@@ -19,7 +18,6 @@ function ControlLocation({id}) {
       useEffect(() => {
         // Fetch user data from the API
         axios.get(`http://localhost:3001/api/userslocation/${id}`).then(response => {
-
             const userData = response.data.map(loc => ({
                 id: loc.id,
                 name: loc.name,
@@ -52,8 +50,9 @@ function ControlLocation({id}) {
                         variant='light' 
                         as="li" 
                         className="d-flex justify-content-between align-items-start">
-                        <Col xs={5}>{item.name}</Col>
-                        <Col xs={5}>{item.phone}</Col>
+                        <Col xs={4}>{item.name}</Col>
+                        <Col xs={3}>{item.phone}</Col>
+                        <Col xs={3}>{item.mail}</Col>
                         <Col xs={2}>
                             <ButtonGroup aria-label="Basic example">
                                 <Button variant="light">

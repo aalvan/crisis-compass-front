@@ -12,16 +12,11 @@ function Login({show, handleClose, onSubmit}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
-    const [success, setSuccess] = useState(false);
     const { user, setUser } = useContext(UserContext);
     const userTest = {
         email: email,
         password: password,
     };
-
-    const hideGroup = document.getElementById('login');
-    const init = () =>{
-    }
 
     const [showRegister, setShowRegister] = useState(false)
     const handleCloseRegister = () => { setShowRegister(false); };
