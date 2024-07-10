@@ -9,6 +9,7 @@ import React, { useEffect, useState } from 'react';
 import ControlLocation from '../component/adminControlLocation';
 import ControlStock from '../component/adminControlStock';
 import ControlCapacity from './adminControlCapacity';
+import {Container} from "react-bootstrap";
 
 function PresentationCard({ id }) {
     const [user, setUser] = useState(null);
@@ -41,7 +42,8 @@ function PresentationCard({ id }) {
             title: response.data.name,
             content: `${response.data.address}, ${response.data.city}, ${response.data.region}`,
             latitude: response.data.latitude,
-            longitude: response.data.longitude
+            longitude: response.data.longitude,
+            locationType: response.data.locationType
           };
           setLocation(locationData);
         }).catch(error => {
@@ -99,21 +101,23 @@ function PresentationCard({ id }) {
                         <div className="col">
                             <div className="card">
                             <div className="card-body">
+                                <Container style={{marginRight:50}}>
                                     <h5 className="card-title">Dirección Asignada</h5>
                                     <p className="card-text">{location.title}</p>
                                     <p className="card-text">{location.content}</p>
-                                    <ControlLocation/>
+                                    <ControlLocation style={{marginRight:50}} />
                                     {location.locationType ? (
                                       <>
-                                      <p>shelter</p>
+                                      <p>Albergue</p>
                                       <ControlCapacity/>
                                       </>
                                       ) : (
                                       <>
-                                      <p>colecction center</p>
+                                      <p>Centro de acopio</p>
                                       <ControlStock/>
                                       </>
                                     )}
+                                </Container>
                                 </div>
                             </div>
                         </div>

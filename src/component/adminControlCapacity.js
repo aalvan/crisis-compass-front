@@ -25,7 +25,7 @@ function ControlCapacity () {
     return(
         <>
         <div className='ControlCapacity'>
-        <Container style={{marginTop:20, marginLeft:40}}>
+        <Container style={{marginTop:20}}>
                 <ListGroup style={{ maxHeight: '300px', overflowY: 'scroll' }}>
                     <ListGroup.Item
                         variant='light' 
