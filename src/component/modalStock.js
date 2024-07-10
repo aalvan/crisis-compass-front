@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Col, Button, Row, Modal, Container} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { UserContext } from './UserContext';
+import ShowCapacity from './showCapacity';
 
 function Stock({id, show, handleClose, onSubmit}) {
     const { user } = useContext(UserContext);
@@ -65,11 +66,12 @@ function Stock({id, show, handleClose, onSubmit}) {
               <p>{content}</p>
               {location.locationType ? (
                 <>
-                <p>shelter</p>
+                <p>Albergue</p>
+                <ShowCapacity idLocation={location.id}/>
                 </>
                 ) : (
                 <>
-                <p>colecction center</p>
+                <p>Centro de acopio</p>
                 </>
               )}
             </div>
