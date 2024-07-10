@@ -31,31 +31,25 @@ function Login({show, handleClose, onSubmit}) {
      };
 
     const handleSubmit = async (event) => {
-      event.preventDefault();
-      setEmail('');
-      setPassword('');
-      setSuccess(true);
+        event.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:3001/api/user/check', { email, password });
+            if (response.data.user) {
+                setUser(response.data.user);
+                handleClose();
+                navigate('/volunteers');
+            } else {
+                setErrorMsg(response.data.message);
+                alert(response.data.message);
+            }
+        } catch (error) {
+            setErrorMsg('El inicio de sesión ha fallado');
+            console.error('Login error:', error);
+            alert('El inicio de sesión ha fallado');
+        }
     };
 
     const navigate = useNavigate();
-    const volunteersClick = async () => {
-      try {
-          const response = await axios.post('http://localhost:3001/api/user/check', userTest);
-          if (response.data.user) {
-              setSuccess(true);
-              setUser(response.data.user);
-              handleClose();
-              navigate('/volunteers');
-          } else {
-              setErrorMsg('Correo o contraseña no válido');
-              alert('Correo o contraseña no válido');
-          }
-      } catch (error) {
-          setErrorMsg('El inicio de sesión ha fallado');
-          console.error(error);
-      }
-  }
-
     return (
       <>
         <Modal show={show} onHide={handleClose}
@@ -107,7 +101,7 @@ function Login({show, handleClose, onSubmit}) {
                                 variant="dark"
                                 name="init" 
                                 size="md" 
-                                onClick={volunteersClick}  
+                                onClick={handleSubmit}
                                 style={{backgroundColor: "#BF5050", }}
                                 >Iniciar Sesión
                             </Button>
