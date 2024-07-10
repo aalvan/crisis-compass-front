@@ -6,12 +6,8 @@ import imagePath2 from '../assets/Person.jpg';
 import imagePath3 from '../assets/edit-text.png';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-<<<<<<< Updated upstream
 import ControlLocation from '../component/adminControlLocation';
 import ControlStock from '../component/adminControlStock';
-=======
-import Map from './map';
->>>>>>> Stashed changes
 
 function PresentationCard({ id }) {
     const [user, setUser] = useState(null);
@@ -105,8 +101,15 @@ function PresentationCard({ id }) {
                                     <h5 className="card-title">Dirección Asignada</h5>
                                     <p className="card-text">{location.title}</p>
                                     <p className="card-text">{location.content}</p>
-                                    <p className="card-text">Latitud: {location.latitude}</p>
-                                    <p className="card-text">Longitud: {location.longitude}</p>
+                                    {location.locationType ? (
+                                      <>
+                                      <p>shelter</p>
+                                      </>
+                                      ) : (
+                                      <>
+                                      <p>colecction center</p>
+                                      </>
+                                    )}
                                 </div>
                             </div>
                         </div>
