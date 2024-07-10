@@ -8,6 +8,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ControlLocation from '../component/adminControlLocation';
 import ControlStock from '../component/adminControlStock';
+import ControlCapacity from './adminControlCapacity';
 
 function PresentationCard({ id }) {
     const [user, setUser] = useState(null);
@@ -97,17 +98,28 @@ function PresentationCard({ id }) {
                     <div className="row mt-4">
                         <div className="col">
                             <div className="card">
-                                <div className="card-body">
+                            <div className="card-body">
                                     <h5 className="card-title">Dirección Asignada</h5>
                                     <p className="card-text">{location.title}</p>
                                     <p className="card-text">{location.content}</p>
-                                    <p className="card-text">Latitud: {location.latitude}</p>
-                                    <p className="card-text">Longitud: {location.longitude}</p>
+                                    <ControlLocation/>
+                                    {location.locationType ? (
+                                      <>
+                                      <p>shelter</p>
+                                      <ControlCapacity/>
+                                      </>
+                                      ) : (
+                                      <>
+                                      <p>colecction center</p>
+                                      <ControlStock/>
+                                      </>
+                                    )}
                                 </div>
                             </div>
                         </div>
                     </div>
                 )}
+            
             </div>
         </div>
     )

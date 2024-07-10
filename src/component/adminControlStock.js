@@ -10,8 +10,8 @@ function ControlStock() {
         {id: 2, name: 'Colchón', type: "Mueble", quantity: 5},
         {id: 3, name: 'Pantalón', type: "Ropa", quantity: 10}
       ];
-    const [newIn, setNewIn] = useState('')
-    const [newOut, setNewOut] = useState('')
+    const [newIn, setNewIn] = useState(0)
+    const [newOut, setNewOut] = useState(0)
 
     const [newProduct, setNewProduct] = useState('')
     const [newType, setNewType] = useState('')
